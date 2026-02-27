@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Выставка нейро-картин</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to bottom, #1a0f0b, #0d0705);
+  color: #fff;
+}
+
+header {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+}
+
+.gallery {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+/* затемнение */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  opacity: 0;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* показываем текст */
+.card.active .overlay {
+  opacity: 1;
+}
+
+/* кнопки */
+.actions {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 5;
+  display: flex;
+  gap: 12px;
+}
+
+.actions button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.like.active {
+  color: #ff4d6d;
+  transform: scale(1.2);
+}
+
+.favorite.active {
+  color: gold;
+  transform: scale(1.2);
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Выставка нейро-картин</h1>
+</header>
+
+<section class="gallery">
+
+  <div class="card">
+    <img src="images/poezd.jpg" alt="">
+    <div class="overlay">
+      <p>Самоуправляемый паровоз, 330 г. до н.э.</p>
+    </div>
+    <div class="actions">
+      <button class="like">♡</button>
+      <button class="favorite">🔖</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/women.webp" alt="">
+    <div class="overlay">
+      <p>Элегантная дама в шляпе</p>
+    </div>
+    <div class="actions">
+      <button class="like">♡</button>
+      <button class="favorite">🔖</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="images/men.webp" alt="">
+    <div class="overlay">
+      <p>Инженер-механик будущего</p>
+    </div>
+    <div class="actions">
+      <button class="like">♡</button>
+      <button class="favorite">🔖</button>
+    </div>
+  </div>
+
+ <div class="card">
+    <img src="images/vik.jpg" alt="">
+    <div class="overlay">
+      <p>Викторианская леди</p>
+    </div>
+    <div class="actions">
+      <button class="like">♡</button>
+      <button class="favorite">🔖</button>
+    </div>
+  </div>
+
+<div class="card">
+    <img src="images/cgor.jpg" alt="">
+    <div class="overlay">
+      <p>средневековый город</p>
+    </div>
+    <div class="actions">
+      <button class="like">♡</button>
+      <button class="favorite">🔖</button>
+    </div>
+  </div>
+
+<div class="card">
+    <img src="images/arx.jpg" alt="">
+    <div class="overlay">
+      <p>архитектура город</p>
+    </div>
+    <div class="actions">
+      <button class="like">♡</button>
+      <button class="favorite">🔖</button>
+    </div>
+  </div>
+
+<div class="card">
+    <img src="images/mex.jpg" alt="">
+    <div class="overlay">
+      <p>механический человек</p>
+    </div>
+    <div class="actions">
+      <button class="like">♡</button>
+      <button class="favorite">🔖</button>
+    </div>
+  </div>
+
+<div class="card">
+    <img src="images/gor.jpg" alt="">
+    <div class="overlay">
+      <p>горы</p>
+    </div>
+    <div class="actions">
+      <button class="like">♡</button>
+      <button class="favorite">🔖</button>
+    </div>
+  </div>
+
+
+
+
+</section>
+
+<footer>
+  Сделано руками «Oksana»
+</footer>
+
+<script>
+
+// открытие текста при клике на карточку
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if (e.target.closest('.actions')) return;
+    this.classList.toggle('active');
+  });
+});
+
+// лайк
+document.querySelectorAll('.like').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.classList.toggle('active');
+    this.textContent = this.classList.contains('active') ? '❤' : '♡';
+  });
+});
+
+// избранное
+document.querySelectorAll('.favorite').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.classList.toggle('active');
+  });
+});
+
+</script>
+
+</body>
+</html>
